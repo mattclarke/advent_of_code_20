@@ -36,10 +36,10 @@ for line in puzzle_input:
     # print(f"{top_bag} {contents}")
     bag_heir[top_bag] = {}
     for c in contents:
-        if c == 'no other':
+        if c == "no other":
             continue
-        num = c[0:c.index(" ")]
-        bag = c[c.index(" ") + 1:]
+        num = c[0 : c.index(" ")]
+        bag = c[c.index(" ") + 1 :]
         bag_heir[top_bag][bag] = num
     # print(f"{top_bag} {bag_heir[top_bag]}")
 

@@ -80,5 +80,3 @@ for i, v in enumerate(instructions):
     if pointer >= len(new_instructions):
         print(f"answer = {accumulator}")
         break
-
-

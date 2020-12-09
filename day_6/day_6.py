@@ -45,7 +45,7 @@ count = 0
 for line in puzzle_input:
     if line == "":
         total = 0
-        for k,v in yes_answers.items():
+        for k, v in yes_answers.items():
             if v == count:
                 total += 1
         group_answer_count.append(total)
@@ -57,7 +57,7 @@ for line in puzzle_input:
         yes_answers[c] = yes_answers.get(c, 0) + 1
 
 total = 0
-for k,v in yes_answers.items():
+for k, v in yes_answers.items():
     if v == count:
         total += 1
 group_answer_count.append(total)
