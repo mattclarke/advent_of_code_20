@@ -45,4 +45,17 @@ instruction being called twice.
 * Iterate and replace only one nop with jmp or vice versa and check for an infinite loop (failure) or for it to reach the end of
 the instruction set (success).
 
+## Day 9
+### Part 1
+* Simple loop with sliding window of values.
+### Part 2
+* Simple double loop to create a "growing window" for each value until answer found.
+
+## Day 10
+### Part 1
+* Sort then count the differences between values, plus an extra 3 for the "adaptor".
+### Part 2
+* The number of ways to a node is the sum of the number of ways to the previous nodes that can reach it.
+Simple really but I got somewhat lost so it took longer than it should :(
+
 
