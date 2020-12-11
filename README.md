@@ -58,4 +58,10 @@ the instruction set (success).
 * The number of ways to a node is the sum of the number of ways to the previous nodes that can reach it.
 Simple really but I got somewhat lost so it took longer than it should :(
 
+## Day 11
+### Part 1
+* Variation on Conway's GoL. To make counting neighbours easier I put an empty border around the board.
+### Part 2
+* Variation to neighbours rule. Brute forced to go continuously in a direction until it hits something relevant.
+
 
