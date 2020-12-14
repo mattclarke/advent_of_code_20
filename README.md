@@ -100,7 +100,7 @@ wp_x, wp_y = wp_y, -wp_x
 # for anti-clockwise:
 wp_x, wp_y = -wp_y, wp_x
 ```
-Reasoning: treat as a complex number where x-axis is real and y-axis is imaginary, multiplying by i is a 90 degree rotation.
+Reasoning: treat as a complex number where x-axis is real and y-axis is imaginary, multiplying by i is a 90 degree rotation anti-clockwise.
 ```
 # rotate once
 x * i = ix (x is now along the imaginary axis, i.e. y) => what was originally the x component is now the y component
@@ -112,11 +112,71 @@ ix * i = -x (180 degrees from original)
 
 # and so on.
 ```
-See https://www.khanacademy.org/science/electrical-engineering/ee-circuit-analysis-topic/ee-ac-analysis/v/ee-multiplying-j-rotation
+Dividing by i is a 90 degrees rotation clockwise.
 
+See https://www.khanacademy.org/science/electrical-engineering/ee-circuit-analysis-topic/ee-ac-analysis/v/ee-multiplying-j-rotation
+and https://www.khanacademy.org/science/electrical-engineering/ee-circuit-analysis-topic/ee-ac-analysis/v/ee-complex-rotation
 
 ## Day 13
 ### Part 1
-*
+* Simple maths, could have been done on pen and paper
 ### Part 2
-*
+* Basically a calculation. Uses Chinese Remainder Theorem.
+Worked example using one of the examples:
+```
+Input is [17, 'x', 13, 19]
+Offsets are [0, 2, 3] (ignoring the 'x')
+
+We are basically solving '(id - offset) mod id' for all the ids
+x ≡ 0 mod 17    (17 mod 17 is the same as 0 mod 17)
+x ≡ 11 mod 13
+x ≡ 16 mod 19
+
+The lcm of all the modulo:
+17 * 13 * 19 = 4199
+In this case, all the modulo multiplied together because they are prime.
+
+For each id we calculate the combined modulo of the other ids excluding the current id:
+n_bar_0 = 4199 / 17 = 247 (same as 13 * 19)
+n_bar_1 = 4199 / 13 = 323
+n_bar_2 = 4199 / 19 = 221
+
+Next we calculate the modular multiplicative inverses, u, using:
+n_bar * u ≡ 1 mod id
+The easy way to do this is loop increasing u from 1 until the equation is satisfied:
+247 * u0 ≡ 1 mod 17 => u0 = 2
+323 * u1 ≡ 1 mod 13 => u1 = 6
+221 * u2 ≡ 1 mod 19 => u2 = 8
+
+Table of what we have so far:
+
+id  | a  | u |
+--------------
+17    0    2
+13    11   6
+19    16   8
+
+CRT says that the solution is:
+x = (a0 * id0 * u0) + ... + (an * idn * un)
+
+For our example:
+x = (0 * 17 * 2) + (11 * 13 * 6) + (16 * 19 * 8)
+x = 49606
+
+Finally modulo it
+x = 49606 mod 4199 = 3417
+```
+Note: CRT relies on the ids being pairwise co-primes, i.e. gcd(a, b) = 1. For example, (4, 9) is a co-prime pair.
+
+All this information came from:
+https://www.dave4math.com/mathematics/chinese-remainder-theorem/
+This was useful too:
+https://en.m.wikipedia.org/wiki/Modular_multiplicative_inverse
+
+## Day 14
+### Part 1
+* Relatively simple, some conversion from and to binary representation
+### Part 2
+* Can be done via brute-force.
+Using itertools' permutation generates too many repetitions so is very slow (~5 minutes).
+Generating our own permutations is much quicker (< 1 second!).
