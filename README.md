@@ -121,7 +121,7 @@ and https://www.khanacademy.org/science/electrical-engineering/ee-circuit-analys
 ### Part 1
 * Simple maths, could have been done on pen and paper
 ### Part 2
-* Basically a calculation. Uses Chinese Remainder Theorem.
+* Basically a calculation using the Chinese Remainder Theorem.
 Worked example using one of the examples:
 ```
 Input is [17, 'x', 13, 19]
@@ -148,6 +148,10 @@ The easy way to do this is loop increasing u from 1 until the equation is satisf
 323 * u1 ≡ 1 mod 13 => u1 = 6
 221 * u2 ≡ 1 mod 19 => u2 = 8
 
+Alternatively, we can use Euler's theorem u = a ** (m - 2) % m if a is co-prime to m.
+For example:
+u0 = 247 ** (17 - 2) mod 17    [in Python we can do pow(247, 15, 17)]
+
 Table of what we have so far:
 
 id  | a  | u |
@@ -173,6 +177,10 @@ https://www.dave4math.com/mathematics/chinese-remainder-theorem/
 This was useful too:
 https://en.m.wikipedia.org/wiki/Modular_multiplicative_inverse
 
+Another completely different solution from the web is to start counting up in step-size of one of the ids until it
+coincides with one of the other ids then multiple the step-size by the new id then continue until it hits another id and
+then multiple the step-size again and so on. I've not tried this though...
+
 ## Day 14
 ### Part 1
 * Relatively simple, some conversion from and to binary representation
@@ -180,3 +188,9 @@ https://en.m.wikipedia.org/wiki/Modular_multiplicative_inverse
 * Can be done via brute-force.
 Using itertools' permutation generates too many repetitions so is very slow (~5 minutes).
 Generating our own permutations is much quicker (< 1 second!).
+
+## Day 15
+### Part 1
+* Simple looping tracking the last two times a value occurs.
+### Part 2
+* Using the solution from part 1 takes ~2 minutes. Must be a quicker way...
