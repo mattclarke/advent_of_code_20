@@ -194,3 +194,13 @@ Generating our own permutations is much quicker (< 1 second!).
 * Simple looping tracking the last two times a value occurs.
 ### Part 2
 * Using the solution from part 1 takes ~2 minutes. Must be a quicker way...
+TODO: find a quicker way!
+
+## Day 16
+### Part 1
+* Parsing the input to get the valid numbers and ticket information as integers then looping around to find the invalid
+numbers in the tickets.
+### Part 2
+* Keep track of which rules are valid for each position by comparing against all valid tickets. Then loop through each
+position and if it only has one valid rule then we can remove that rule from the other position until eventually all
+positions only have one rule.
