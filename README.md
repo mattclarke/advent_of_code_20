@@ -204,3 +204,10 @@ numbers in the tickets.
 * Keep track of which rules are valid for each position by comparing against all valid tickets. Then loop through each
 position and if it only has one valid rule then we can remove that rule from the other position until eventually all
 positions only have one rule.
+
+## Day 16
+### Part 1
+* Conway's game of life but in 3-D. Used itertools' permutation to get the 26 neighbours and a set for the board.
+Have to recalculate min and max for each dimension after each tick - could do this during the tick though...
+### Part 2
+* Same but 4-D - essentially just added an extra loop. Takes ~3 seconds.
