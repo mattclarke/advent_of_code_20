@@ -217,3 +217,15 @@ Have to recalculate min and max for each dimension after each tick - could do th
 * Basic maths parser for `+`, `*`, `(` and `)` where `*` and `+` have same precedence. I used recursion on `(`
 ### Part 2
 * `+` has precedence over `*`. Same as Part 1 but recurse on `*` as well.
+
+## Day 19
+### Part 1
+* Calculated set of all possibilities and then check messages in it. Took a while to get the recursion right.
+### Part 2
+* First attempt I tried taking from the back until no longer possible then take from the front; it got very complicated
+with lots of flags. Didn't get the right value but worked for the examples.
+When for a walk, second attempt was just to always take from the front and then check the final string was empty and that
+there were more 42s removed than 31s and 31s > 0. Once I realised using `replace` rather than indexing was a stupid
+mistake because it didn't just remove the first instance but all of them (d'oh!), it worked.
+Used version 2 to debug version 1 - the issue was I was missing some flag checks (and that way of doing it was stupidly complex).
+
