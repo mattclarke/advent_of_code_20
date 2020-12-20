@@ -229,3 +229,15 @@ there were more 42s removed than 31s and 31s > 0. Once I realised using `replace
 mistake because it didn't just remove the first instance but all of them (d'oh!), it worked.
 Used version 2 to debug version 1 - the issue was I was missing some flag checks (and that way of doing it was stupidly complex).
 
+## Day 20
+### Part 1
+* Tried Ariadne's maze, very slow (~2 minutes). Used numpy for rotations etc. (is that cheating?). TODO: try to speed-up
+Ideas: early exit if not possible, CACHE THE TRANSFORMATIONS, and/or prefilter which tiles can go next which other tiles
+### Part 2
+* READ THE INSTRUCTIONS!
+
+## Day 21
+### Part 1
+*
+### Part 2
+*
