@@ -124,7 +124,6 @@ tile_num = 0
 tile = []
 
 # y is first and goes downwards
-
 for line in puzzle_input:
     if line.startswith("Tile"):
         tile_num = int(line.replace("Tile ", "").replace(":", ""))
@@ -172,6 +171,16 @@ result = [[None for _ in range(SIDE_LENGTH)] for _ in range(SIDE_LENGTH)]
 
 list_of_tiles = list(tiles.keys())
 
+# Hold the transformations
+trans_cache = {}
+
+for tile_name in list_of_tiles:
+    trans = []
+    for t in transformations:
+        tile = do_transform(tiles[tile_name], t)
+        trans.append(tile)
+    trans_cache[tile_name] = trans
+
 
 def solve(possible_tiles, y, x):
     # print(possible_tiles, y, x)
@@ -179,9 +188,7 @@ def solve(possible_tiles, y, x):
         new_list = deepcopy(possible_tiles)
         new_list.remove(tile_name)
 
-        for t in transformations:
-            # do transform
-            tile = do_transform(tiles[tile_name], t)
+        for tile in trans_cache[tile_name]:
             # put in if fits
             if y == 0 and x == 0:
                 result[y][x] = (tile_name, tile)
