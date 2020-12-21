@@ -238,6 +238,6 @@ Ideas: early exit if not possible, CACHE THE TRANSFORMATIONS, and/or prefilter w
 
 ## Day 21
 ### Part 1
-*
+* Process of elimination using sets.
 ### Part 2
-*
+* Simple - sort the allergens and apply CSV to the ingredients in that order.
