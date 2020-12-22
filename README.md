@@ -244,3 +244,9 @@ Used version 2 to debug version 1 - the issue was I was missing some flag checks
 * Process of elimination using sets.
 ### Part 2
 * Simple - sort the allergens and apply CSV to the ingredients in that order.
+
+## Day 22
+### Part 1
+* Trivial looping and popping.
+### Part 2
+* Recursion was simple enough once I understood the rules, should have read the instructions more closely.
