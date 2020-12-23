@@ -2,110 +2,152 @@ from copy import copy
 
 PUZZLE_INPUT = "538914762"
 
-PUZZLE_INPUT = "389125467"
+# PUZZLE_INPUT = "389125467"
 
 puzzle_input = [int(x) for x in PUZZLE_INPUT]
-print(puzzle_input)
+# print(puzzle_input)
 
-current_cup = 0
 cups = puzzle_input[:]
 
+
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+    def as_list(self):
+        result = [self.value]
+        node = self.next
+        while node and node != self:
+            result.append(node.value)
+            node = node.next
+        return result
+
+
+linked_list = None
+last = None
+lookup = {}
+
+for c in puzzle_input[:]:
+    if linked_list:
+        node = Node(c)
+        last.next = node
+        last = node
+        lookup[c] = node
+    else:
+        linked_list = Node(c)
+        last = linked_list
+        lookup[c] = last
+
+# Join the circle
+last.next = linked_list
+
+print(linked_list.as_list())
+
+top_cup = linked_list
+current_cup = linked_list
+max_cup = max(puzzle_input)
+
 for i in range(100):
-    print(f"\n-- move {i + 1} --")
-    print(f"cups: {cups}")
+    # print(f"\n-- move {i + 1} --")
+    # print(f"cups: {top_cup.as_list()}")
 
-    pick_up = []
-    for _ in range(3):
-        if current_cup + 1 < len(cups):
-            pick_up.append(cups.pop(current_cup + 1))
-        else:
-            pick_up.append(cups.pop(0))
-            current_cup -= 1
+    # Remove three cups
+    head = current_cup.next
+    tail = head.next.next
+    current_cup.next = tail.next
+    tail.next = None
+    picked_up = [head.value, head.next.value, head.next.next.value]
 
-    destination = cups[current_cup] - 1
-    while destination not in cups:
+    destination = current_cup.value - 1
+    destination = destination if destination > 0 else max_cup
+    while destination in picked_up:
         destination -= 1
         if destination < 1:
-            destination = max(cups)
+            destination = max_cup
 
+    # print(f"current cup: {current_cup.value}")
+    # print(f"pick up: {head.as_list()}")
+    # print(f"destination: {destination}")
 
-    print(f"current cup: {cups[current_cup]}")
-    print(f"pick up: {pick_up}")
-    print(f"destination: {destination}")
+    # Insert at destination
+    dest = lookup[destination]
+    dest_next = dest.next
+    dest.next = head
+    tail.next = dest_next
 
-    # Insert
-    index = (cups.index(destination) + 1) % len(cups)
-    if index == 0:
-        for pu in pick_up:
-            cups.append(pu)
-    else:
-        for pu in reversed(pick_up):
-            cups.insert(index, pu)
-            if index <= current_cup:
-                current_cup += 1
-    current_cup = (current_cup + 1) % len(cups)
+    current_cup = current_cup.next
 
-print(f"{cups}")
+print(f"{linked_list.as_list()}")
 
-index_ = cups.index(1) + 1
+next_node = lookup[1].next
 result = []
 
-while cups[index_] != 1:
-    result.append(str(cups[index_]))
-    index_ = (index_ + 1) % len(cups)
+while next_node != lookup[1]:
+    result.append(str(next_node.value))
+    next_node = next_node.next
 
+# 54327968
 print(f"answer = {''.join(result)}")
 
 
 # Part 2
-# current_cup = 0
-# cups = puzzle_input[:]
-# highest_cup = max(cups) + 1
-#
-# while len(cups) < 1_000_000:
-#     cups.append(highest_cup)
-#     highest_cup += 1
-#
-#
-# for i in range(10_000_000):
-#     if i % 100 == 0:
-#         print(f"\n-- move {i + 1} --")
-#     # print(f"cups: {cups}")
-#
-#     pick_up = []
-#     for _ in range(3):
-#         if current_cup + 1 < len(cups):
-#             pick_up.append(cups.pop(current_cup + 1))
-#         else:
-#             pick_up.append(cups.pop(0))
-#             current_cup -= 1
-#
-#     destination = cups[current_cup] - 1
-#     while destination not in cups:
-#         destination -= 1
-#         if destination < 1:
-#             destination = max(cups)
-#
-#
-#     # print(f"current cup: {cups[current_cup]}")
-#     # print(f"pick up: {pick_up}")
-#     # print(f"destination: {destination}")
-#
-#     # Insert
-#     index = (cups.index(destination) + 1) % len(cups)
-#     if index == 0:
-#         for pu in pick_up:
-#             cups.append(pu)
-#     else:
-#         for pu in reversed(pick_up):
-#             cups.insert(index, pu)
-#             if index <= current_cup:
-#                 current_cup += 1
-#     current_cup = (current_cup + 1) % len(cups)
-#
-# # print(f"{cups}")
-#
-# index_ = (cups.index(1) + 1) % len(cups)
-# result = cups[index_] * cups[(index_ + 1) % len(cups)]
-#
-# print(f"answer = {result}")
+# Almost exactly the same code!
+linked_list = None
+last = None
+lookup = {}
+
+for c in cups:
+    if linked_list:
+        node = Node(c)
+        last.next = node
+        last = node
+        lookup[c] = node
+    else:
+        linked_list = Node(c)
+        last = linked_list
+        lookup[c] = last
+
+for i in range(len(cups)+1, 1_000_000 + 1):
+    node = Node(i)
+    last.next = node
+    last = node
+    lookup[i] = node
+
+# Join the circle
+last.next = linked_list
+
+top_cup = linked_list
+current_cup = linked_list
+
+max_cup = 1_000_000
+
+for i in range(10_000_000):
+    # Remove three cups
+    head = current_cup.next
+    tail = head.next.next
+    current_cup.next = tail.next
+    tail.next = None
+    picked_up = [head.value, head.next.value, head.next.next.value]
+
+    destination = current_cup.value - 1
+    destination = destination if destination > 0 else max_cup
+    while destination in picked_up:
+        destination -= 1
+        if destination < 1:
+            destination = max_cup
+
+    # Insert at destination
+    dest = lookup[destination]
+    dest_next = dest.next
+    dest.next = head
+    tail.next = dest_next
+
+    current_cup = current_cup.next
+
+next_node = lookup[1].next
+result = next_node.value * next_node.next.value
+
+# 157410423276
+print(f"answer = {result}")
+

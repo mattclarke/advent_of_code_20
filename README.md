@@ -251,3 +251,9 @@ Used version 2 to debug version 1 - the issue was I was missing some flag checks
 ### Part 2
 * Recursion was simple enough once I understood the rules, should have read the instructions more closely.
 TODO: remove repeated code?
+
+## Day 23
+### Part 1
+* Trivial brute force. Lists and popping and inserting. As part 2 is bigger I went back and changed it to a linked list.
+### Part 2
+* Takes ~25 seconds with linked list.
