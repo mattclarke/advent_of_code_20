@@ -174,6 +174,7 @@ Note: CRT relies on the ids being pairwise co-primes, i.e. gcd(a, b) = 1. For ex
 
 All this information came from:
 https://www.dave4math.com/mathematics/chinese-remainder-theorem/
+
 This was useful too:
 https://en.m.wikipedia.org/wiki/Modular_multiplicative_inverse
 
@@ -224,9 +225,11 @@ Have to recalculate min and max for each dimension after each tick - could do th
 ### Part 2
 * First attempt I tried taking from the back until no longer possible then take from the front; it got very complicated
 with lots of flags. Didn't get the right value but worked for the examples.
-When for a walk, second attempt was just to always take from the front and then check the final string was empty and that
+
+Went for a walk, second attempt was just to always take from the front and then check the final string was empty and that
 there were more 42s removed than 31s and 31s > 0. Once I realised using `replace` rather than indexing was a stupid
 mistake because it didn't just remove the first instance but all of them (d'oh!), it worked.
+
 Used version 2 to debug version 1 - the issue was I was missing some flag checks (and that way of doing it was stupidly complex).
 
 ## Day 20
