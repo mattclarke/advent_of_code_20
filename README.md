@@ -257,3 +257,10 @@ TODO: remove repeated code?
 * Trivial brute force. Lists and popping and inserting. As part 2 is bigger I went back and changed it to a linked list.
 ### Part 2
 * Takes ~25 seconds with linked list.
+
+## Day 24
+### Part 1
+* Once I worked out how to manipulate x and y in a hexagon grid then it was simple. Namely, moving directly east or west
+is x + 2 or x - 2 respectively, other directions are step size 1.
+### Part 2
+* Conway's again. I just set the grid to a max size and iterated - a bit slow ~20 seconds.
