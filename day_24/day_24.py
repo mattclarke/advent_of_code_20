@@ -93,10 +93,27 @@ black_tiles = {x for x, v in flipped_tiles.items() if v}
 neighbours = [(2,0), (1, -1), (-1, -1), (-2, 0), (-1, 1), (1, 1)]
 
 
+def calc_limits(board):
+    min_x = 1000
+    max_x = -1000
+    min_y = 1000
+    max_y = -1000
+
+    for x, y in board:
+        min_x = min(min_x, x)
+        max_x = max(max_x, x)
+        min_y = min(min_y, y)
+        max_y = max(max_y, y)
+    return min_x - 2, max_x + 2, min_y - 2, max_y + 2
+
+
 def do_tick(board):
     new_board = set()
-    for x in range(-200, 200):
-        for y in range(-200, 200):
+    min_x, max_x, min_y, max_y = calc_limits(board)
+    # print(min_x, max_x, min_y, max_y)
+
+    for x in range(min_x, max_x):
+        for y in range(min_y, max_y):
             num = 0
             for n in neighbours:
                 nx = x + n[0]

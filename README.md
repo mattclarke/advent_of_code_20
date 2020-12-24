@@ -263,4 +263,6 @@ TODO: remove repeated code?
 * Once I worked out how to manipulate x and y in a hexagon grid then it was simple. Namely, moving directly east or west
 is x + 2 or x - 2 respectively, other directions are step size 1.
 ### Part 2
-* Conway's again. I just set the grid to a max size and iterated - a bit slow ~20 seconds.
+* Conway's again. I just set the grid to a max size (200 x 200) and iterated - a bit slow ~20 seconds.
+Calculating the grid size on each tick brings it down to < 2 seconds. Turns out 200 x 200 is excessive, 110 x 110 would
+have been okay (~6 seconds).
