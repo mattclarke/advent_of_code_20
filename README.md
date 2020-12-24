@@ -231,11 +231,10 @@ Used version 2 to debug version 1 - the issue was I was missing some flag checks
 
 ## Day 20
 ### Part 1
-* Tried Ariadne's maze, very slow (~2 minutes). Used numpy for rotations etc. (is that cheating?). TODO: try to speed-up
-* Ideas:
-    * Early exit if not possible,
-    * Cache the transformations - brings it down to ~50s
-    * Prefilter which tiles can go next which other tiles
+* Tried Ariadne's maze, very slow (~2 minutes). Used numpy for rotations etc. (is that cheating?).
+* Ideas for speed-up:
+    1. Cache the transformations - brings it down to ~50s
+    2. Prefilter which tiles can be neighbours of each tile - combined with 1. brings it down to ~8 seconds.
 ### Part 2
 * READ THE INSTRUCTIONS!
 

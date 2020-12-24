@@ -182,12 +182,51 @@ for tile_name in list_of_tiles:
     trans_cache[tile_name] = trans
 
 
+# Check to see which tiles can go with which
+allowed_neighbours = {}
+
+for tile_1 in list_of_tiles:
+    allowed_neighbours[tile_1] = set()
+
+    for tile_2 in list_of_tiles:
+        if tile_1 == tile_2:
+            continue
+        for t1 in trans_cache[tile_1]:
+            for t2 in trans_cache[tile_2]:
+                if False not in np.equal(t1[:, ~0], t2[:, 0]):
+                    allowed_neighbours[tile_1].add(tile_2)
+
+
 def solve(possible_tiles, y, x):
     # print(possible_tiles, y, x)
     for tile_name in possible_tiles:
+
+        # Skip tiles that don't appear in allowed neighbours
+        if y == 0 and x == 0:
+            pass
+        elif y == 0:
+            # Compare left only
+            left = result[y][x - 1][0]
+            if tile_name not in allowed_neighbours[left]:
+                continue
+        elif x == 0:
+            # Compare up only
+            up = result[y - 1][x][0]
+            if tile_name not in allowed_neighbours[up]:
+                continue
+        else:
+            # Compare up and left
+            up = result[y - 1][x][0]
+            if tile_name not in allowed_neighbours[up]:
+                continue
+            left = result[y][x - 1][0]
+            if tile_name not in allowed_neighbours[left]:
+                continue
+
         new_list = deepcopy(possible_tiles)
         new_list.remove(tile_name)
 
+        # Tile matches neighbour(s), so just need to try the different orientations
         for tile in trans_cache[tile_name]:
             # put in if fits
             if y == 0 and x == 0:
