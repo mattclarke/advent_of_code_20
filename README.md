@@ -239,7 +239,7 @@ Used version 2 to debug version 1 - the issue was I was missing some flag checks
     1. Cache the transformations - brings it down to ~50s
     2. Prefilter which tiles can be neighbours of each tile - combined with 1. brings it down to ~8 seconds.
 ### Part 2
-* READ THE INSTRUCTIONS!
+* REMEMBER TO READ THE INSTRUCTIONS!
 
 ## Day 21
 ### Part 1
@@ -252,7 +252,6 @@ Used version 2 to debug version 1 - the issue was I was missing some flag checks
 * Trivial looping and popping.
 ### Part 2
 * Recursion was simple enough once I understood the rules, should have read the instructions more closely.
-TODO: remove repeated code?
 
 ## Day 23
 ### Part 1
@@ -268,3 +267,7 @@ is x + 2 or x - 2 respectively, other directions are step size 1.
 * Conway's again. I just set the grid to a max size (200 x 200) and iterated - a bit slow ~20 seconds.
 Calculating the grid size on each tick brings it down to < 2 seconds. Turns out 200 x 200 is excessive, 110 x 110 would
 have been okay (~6 seconds).
+
+## Day 25
+### Part 1
+* Looping!
