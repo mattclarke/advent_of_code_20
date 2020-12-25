@@ -48,10 +48,10 @@ while turn < 30_000_000:
         record[last][1] = turn
     else:
         record[last].append(turn)
-    if last == 0:
-        print(turn, len(tracker), tracker)
-        tracker.clear()
-    tracker.append(last)
+    # if last == 0:
+    #     print(turn, len(tracker), tracker)
+    #     tracker.clear()
+    # tracker.append(last)
     # print(turn, ":", last)
 
 # 352

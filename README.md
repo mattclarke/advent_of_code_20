@@ -194,7 +194,7 @@ Generating our own permutations is much quicker (< 1 second!).
 ### Part 1
 * Simple looping tracking the last two times a value occurs.
 ### Part 2
-* Using the solution from part 1 takes ~2 minutes. Must be a quicker way...
+* Using the solution from part 1 takes ~40 seconds. Must be a quicker way...
 TODO: find a quicker way!
 
 ## Day 16
