@@ -195,7 +195,8 @@ Generating our own permutations is much quicker (< 1 second!).
 * Simple looping tracking the last two times a value occurs.
 ### Part 2
 * Using the solution from part 1 takes ~40 seconds. Must be a quicker way...
-TODO: find a quicker way!
+
+No "clever" speed-ups but it can be rearranged to reduce the number of calls to the dictionary, so now it takes ~17 seconds.
 
 ## Day 16
 ### Part 1
