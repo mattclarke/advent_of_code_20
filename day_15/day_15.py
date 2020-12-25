@@ -14,15 +14,18 @@ for i in puzzle_input:
         turn += 1
         last = i
         continue
+    # Put the previous value in to record
     record[last] = turn
     turn += 1
     last = i
 
 while turn < 2020:
     prev = record.get(last, -1)
+    # Put the previous value into the record
     record[last] = turn
 
     if prev == -1:
+        # New value
         last = 0
     else:
         last = turn - prev
